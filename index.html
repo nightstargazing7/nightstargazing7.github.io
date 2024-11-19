@@ -29,6 +29,23 @@
             color: white; /* 设置文字颜色，确保在背景上清晰 */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加文字阴影，提升对比度 */
         }
+        .download-link {
+            position: absolute;
+            bottom: 10%; /* 将链接放在页面底部 */
+            left: 50%;
+            transform: translateX(-50%);
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #007bff; /* 链接颜色 */
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .download-link:hover {
+            background-color: #007bff; /* 鼠标悬停时改变背景色 */
+            color: white; /* 改变文字颜色 */
     </style>
 </head>
 <body>
@@ -36,5 +53,9 @@
         <p>我们只做技术</p>
         <p>We Focus on Technology</p>
     </div>
+    <!-- 添加下载链接 -->
+    <a href="download1.pdf" class="download-link" download="两兆风力发电机.pdf">
+        两兆网风力发电机图纸
+    </a>
 </body>
 </html>
