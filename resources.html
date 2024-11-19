@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术资料</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-image: url('background1.jpg'); /* 背景图片在主目录 */
+            background-size: cover;
+            background-position: center;
+            flex-direction: column;
+        }
+        .switch-button {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .switch-button:hover {
+            background-color: #0056b3;
+        }
+        .resource-button, .back-button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #28a745;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+            transition: background-color 0.3s ease;
+        }
+        .resource-button:hover, .back-button:hover {
+            background-color: #1e7e34;
+        }
+        .back-button {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- 切换语言按钮 -->
+    <button class="switch-button" id="language-switch">Switch to English</button>
+
+    <!-- 技术资料按钮 -->
+    <a href="download1.pdf" class="resource-button" id="button1" download="两兆网风力发电机原理图.pdf">两兆网风力发电机原理图</a>
+    <a href="download2.pdf" class="resource-button" id="button2" download="ProTX发动机测试台原理图.pdf">ProTX发动机测试台原理图</a>
+    <a href="download3.pdf" class="resource-button" id="button3" download="ProCRANE_1000吨造船龙门吊变频柜原理图.pdf">ProCRANE 1000吨造船龙门吊变频柜原理图</a>
+    <a href="download4.pdf" class="resource-button" id="button4" download="技术资料4.pdf">技术资料 4</a>
+    <a href="download5.pdf" class="resource-button" id="button5" download="技术资料5.pdf">技术资料 5</a>
+
+    <!-- 返回主页按钮 -->
+    <a href="index.html" class="back-button" id="back-button">返回主页</a>
+
+    <script>
+        const switchButton = document.getElementById('language-switch');
+        const buttons = [
+            document.getElementById('button1'),
+            document.getElementById('button2'),
+            document.getElementById('button3'),
+            document.getElementById('button4'),
+            document.getElementById('button5'),
+        ];
+        const backButton = document.getElementById('back-button');
+        let isChinese = localStorage.getItem('language') !== 'en'; // 默认语言
+
+        // 初始化语言
+        function initializeLanguage() {
+            if (!isChinese) {
+                switchButton.textContent = '切换到中文';
+                buttons[0].textContent = 'Wind Turbine Design Diagram';
+                buttons[0].setAttribute('download', 'Wind_Turbine_Design_Diagram.pdf');
+                buttons[1].textContent = 'ProTX Engine Test Bench Diagram';
+                buttons[1].setAttribute('download', 'ProTX_Engine_Test_Bench_Diagram.pdf');
+                buttons[2].textContent = 'ProCRANE 1000T Gantry Crane Diagram';
+                buttons[2].setAttribute('download', 'ProCRANE_1000T_Gantry_Crane_Diagram.pdf');
+                buttons[3].textContent = 'Technical Resource 4';
+                buttons[3].setAttribute('download', 'Technical_Resource_4.pdf');
+                buttons[4].textContent = 'Technical Resource 5';
+                buttons[4].setAttribute('download', 'Technical_Resource_5.pdf');
+                backButton.textContent = 'Back to Home';
+            }
+        }
+
+        // 切换语言
+        switchButton.addEventListener('click', () => {
+            if (isChinese) {
+                switchButton.textContent = '切换到中文';
+                buttons[0].textContent = 'Wind Turbine Design Diagram';
+                buttons[0].setAttribute('download', 'Wind_Turbine_Design_Diagram.pdf');
+                buttons[1].textContent = 'ProTX Engine Test Bench Diagram';
+                buttons[1].setAttribute('download', 'ProTX_Engine_Test_Bench_Diagram.pdf');
+                buttons[2].textContent = 'ProCRANE 1000T Gantry Crane Diagram';
+                buttons[2].setAttribute('download', 'ProCRANE_1000T_Gantry_Crane_Diagram.pdf');
+                buttons[3].textContent = 'Technical Resource 4';
+                buttons[3].setAttribute('download', 'Technical_Resource_4.pdf');
+                buttons[4].textContent = 'Technical Resource 5';
+                buttons[4].setAttribute('download', 'Technical_Resource_5.pdf');
+                backButton.textContent = 'Back to Home';
+                localStorage.setItem('language', 'en'); // 保存语言选择
+                isChinese = false;
+            } else {
+                switchButton.textContent = 'Switch to English';
+                buttons[0].textContent = '两兆网风力发电机原理图';
+                buttons[0].setAttribute('download', '两兆网风力发电机原理图.pdf');
+                buttons[1].textContent = 'ProTX发动机测试台原理图';
+                buttons[1].setAttribute('download', 'ProTX发动机测试台原理图.pdf');
+                buttons[2].textContent = 'ProCRANE 1000吨造船龙门吊变频柜原理图';
+                buttons[2].setAttribute('download', 'ProCRANE_1000吨造船龙门吊变频柜原理图.pdf');
+                buttons[3].textContent = '技术资料 4';
+                buttons[3].setAttribute('download', '技术资料4.pdf');
+                buttons[4].textContent = '技术资料 5';
+                buttons[4].setAttribute('download', '技术资料5.pdf');
+                backButton.textContent = '返回主页';
+                localStorage.setItem('language', 'zh'); // 保存语言选择
+                isChinese = true;
+            }
+        });
+
+        initializeLanguage(); // 初始化页面语言
+    </script>
+</body>
+</html>
