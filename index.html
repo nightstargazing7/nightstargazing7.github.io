@@ -6,29 +6,32 @@
     <title>技术专注</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
+            height: 100vh; /* 使页面高度占满屏幕 */
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('background1.jpg'); /* 设置背景图片 */
+            /*background-size: 800px 600px;*/ /* 固定背景图片大小 */
+            background-repeat: no-repeat; /* 不重复背景 */
+            background-position: center 25%; /* 居中显示并向下偏移 */
+            font-family: Arial, sans-serif;
             position: relative;
         }
-        .centered-image {
-            position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
         .centered-text {
+            position: absolute; /* 使文字浮于背景上方 */
+            top: 50%; /* 垂直居中 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 1.5em;
+            font-size: 2em;
+            color: white; /* 设置文字颜色，确保在背景上清晰 */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加文字阴影，提升对比度 */
         }
     </style>
 </head>
 <body>
-    <img src="background1" alt="背景图片" class="centered-image">
     <div class="centered-text">
         <p>我们只做技术</p>
         <p>We Focus on Technology</p>
