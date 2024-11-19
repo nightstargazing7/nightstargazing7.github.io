@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技术专注</title>
+    <title>中英文切换示例</title>
     <style>
         body {
             margin: 0;
@@ -12,26 +12,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('background1.jpg'); /* 设置背景图片 */
-            /*background-size: 800px 600px;*/ /* 固定背景图片大小 */
-            background-repeat: no-repeat; /* 不重复背景 */
-            background-position: center 25%; /* 居中显示并向下偏移 */
             font-family: Arial, sans-serif;
             position: relative;
+            background-image: url('background1.jpg'); /* 背景图片 */
+            background-size: cover; /* 背景填满页面 */
+            background-position: center; /* 背景居中 */
         }
         .centered-text {
-            position: absolute; /* 使文字浮于背景上方 */
-            top: 50%; /* 垂直居中 */
-            left: 50%; /* 水平居中 */
-            transform: translate(-50%, -50%);
             text-align: center;
             font-size: 2em;
-            color: white; /* 设置文字颜色，确保在背景上清晰 */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加文字阴影，提升对比度 */
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 提高文字可读性 */
+        }
+        .switch-button {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .switch-button:hover {
+            background-color: #0056b3;
         }
         .download-link {
             position: absolute;
-            bottom: 10%; /* 将链接放在页面底部 */
+            bottom: 10%; /* 将下载链接放在页面底部 */
             left: 50%;
             transform: translateX(-50%);
             text-decoration: none;
@@ -46,16 +57,52 @@
         .download-link:hover {
             background-color: #007bff; /* 鼠标悬停时改变背景色 */
             color: white; /* 改变文字颜色 */
+        }
     </style>
 </head>
 <body>
+    <!-- 中英文内容 -->
     <div class="centered-text">
-        <p>我们只做技术</p>
-        <p>We Focus on Technology</p>
+        <p id="content-cn">我们只做技术</p>
+        <p id="content-en" style="display: none;">We Focus on Technology</p>
     </div>
-    <!-- 添加下载链接 -->
-    <a href="download1.pdf" class="download-link" download="两兆风力发电机.pdf">
+
+    <!-- 切换语言按钮 -->
+    <button class="switch-button" id="language-switch">Switch to English</button>
+
+    <!-- 下载链接 -->
+    <a href="download1.pdf" class="download-link" id="download-link" download="design-diagram.pdf">
         两兆网风力发电机图纸
     </a>
+
+    <script>
+        // 获取 DOM 元素
+        const contentCn = document.getElementById('content-cn');
+        const contentEn = document.getElementById('content-en');
+        const switchButton = document.getElementById('language-switch');
+        const downloadLink = document.getElementById('download-link');
+
+        // 当前语言状态
+        let isChinese = true;
+
+        // 切换语言函数
+        switchButton.addEventListener('click', () => {
+            if (isChinese) {
+                // 切换到英文
+                contentCn.style.display = 'none';
+                contentEn.style.display = 'block';
+                switchButton.textContent = '切换到中文'; // 按钮显示中文提示
+                downloadLink.textContent = 'Wind Turbine Design Diagram';
+                isChinese = false;
+            } else {
+                // 切换到中文
+                contentCn.style.display = 'block';
+                contentEn.style.display = 'none';
+                switchButton.textContent = 'Switch to English'; // 按钮显示英文提示
+                downloadLink.textContent = '两兆网风力发电机图纸';
+                isChinese = true;
+            }
+        });
+    </script>
 </body>
 </html>
