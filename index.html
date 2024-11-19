@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100vh; /* 使页面高度占满屏幕 */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -40,23 +40,23 @@
         .switch-button:hover {
             background-color: #0056b3;
         }
-        .download-link {
+        .resource-button {
             position: absolute;
-            bottom: 10%; /* 将下载链接放在页面底部 */
+            bottom: 10%; /* 将按钮放在页面底部 */
             left: 50%;
             transform: translateX(-50%);
             text-decoration: none;
             font-size: 1.2em;
-            color: #007bff; /* 链接颜色 */
-            background-color: white;
+            color: #ffffff;
+            background-color: #28a745;
             padding: 10px 20px;
             border-radius: 5px;
+            cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease;
         }
-        .download-link:hover {
-            background-color: #007bff; /* 鼠标悬停时改变背景色 */
-            color: white; /* 改变文字颜色 */
+        .resource-button:hover {
+            background-color: #1e7e34;
         }
     </style>
 </head>
@@ -70,39 +70,48 @@
     <!-- 切换语言按钮 -->
     <button class="switch-button" id="language-switch">Switch to English</button>
 
-    <!-- 下载链接 -->
-    <a href="download1.pdf" class="download-link" id="download-link" download="design-diagram.pdf">
-        两兆网风力发电机图纸
+    <!-- 链接到技术资料页面的按钮 -->
+    <a href="resources.html" class="resource-button" id="resource-button">
+        技术资料
     </a>
 
     <script>
-        // 获取 DOM 元素
         const contentCn = document.getElementById('content-cn');
         const contentEn = document.getElementById('content-en');
         const switchButton = document.getElementById('language-switch');
-        const downloadLink = document.getElementById('download-link');
+        const resourceButton = document.getElementById('resource-button');
+        let isChinese = localStorage.getItem('language') !== 'en'; // 默认语言
 
-        // 当前语言状态
-        let isChinese = true;
-
-        // 切换语言函数
-        switchButton.addEventListener('click', () => {
-            if (isChinese) {
-                // 切换到英文
+        // 初始化语言
+        function initializeLanguage() {
+            if (!isChinese) {
                 contentCn.style.display = 'none';
                 contentEn.style.display = 'block';
-                switchButton.textContent = '切换到中文'; // 按钮显示中文提示
-                downloadLink.textContent = 'Wind Turbine Design Diagram';
+                switchButton.textContent = '切换到中文';
+                resourceButton.textContent = 'Technical Resources';
+            }
+        }
+
+        // 切换语言
+        switchButton.addEventListener('click', () => {
+            if (isChinese) {
+                contentCn.style.display = 'none';
+                contentEn.style.display = 'block';
+                switchButton.textContent = '切换到中文';
+                resourceButton.textContent = 'Technical Resources';
+                localStorage.setItem('language', 'en'); // 保存语言选择
                 isChinese = false;
             } else {
-                // 切换到中文
                 contentCn.style.display = 'block';
                 contentEn.style.display = 'none';
-                switchButton.textContent = 'Switch to English'; // 按钮显示英文提示
-                downloadLink.textContent = '两兆网风力发电机图纸';
+                switchButton.textContent = 'Switch to English';
+                resourceButton.textContent = '技术资料';
+                localStorage.setItem('language', 'zh'); // 保存语言选择
                 isChinese = true;
             }
         });
+
+        initializeLanguage(); // 初始化页面语言
     </script>
 </body>
 </html>
